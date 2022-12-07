@@ -19,8 +19,8 @@ class AuthController extends Controller
         ]);
 
         return response()->json([
-            'missatge' => 'Usuari registrat correctament',
-            'usuari' => $user
+            "missatge" => 'Usuari registrat correctament',
+
         ], 200);
     }
 
@@ -38,10 +38,9 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'missatge' => 'Hola ' . $user->name,
-            'accessToken' => $token,
-            'token_type' => 'Bearer',
-            'usuari' => $user
+            "email" =>  $user->email,
+            "password" =>  $user->password,
+            "accessToken" => $token,
         ], 200);
     }
 

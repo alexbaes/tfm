@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -6,23 +7,36 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  email!: string;
-  password!: string;
+export class LoginComponent {
+  public message = '';
+  public loginForm: FormGroup;
 
-  constructor(private authSvc: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.createForm();
+  }
 
-  ngOnInit(): void {
-    // const userData = {
-    //   email: 'eric@gmail.com',
-    //   password: '123456789',
-    // };
+  createForm() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
 
-    // this.authSvc.login(userData).subscribe((res) => console.log('Login'));
+  // login(): void {
+  //   const login = this.loginForm.value;
+  //   this.authService.login(login).subscribe(
+  //     (resp) => {
+  //       console.log('Successfully logged in');
+  //     },
+  //     (err) => {
+  //       console.error('Error logging in', err);
+  //     }
+  //   );
+  // }
 
-    const user = { email: this.email, pasword: this.password };
-
-    this.authSvc.login(user).subscribe({
+  login(): void {
+    const login = this.loginForm.value;
+    this.authService.login(login).subscribe({
       next: (data) => {
         console.log(data);
       },

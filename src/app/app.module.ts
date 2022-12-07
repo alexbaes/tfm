@@ -16,7 +16,6 @@ import { SidebarModule } from './shared/components/sidebar/sidebar.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     SidebarModule,
