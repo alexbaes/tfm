@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-card {
+      max-width: 350px;
+      margin: 2rem auto;
+      text-align: center;
+      padding: 2rem 4rem;
+  }
+
+button{
+    width: 100%;
+  }
+

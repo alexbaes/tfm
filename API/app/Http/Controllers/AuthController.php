@@ -15,12 +15,14 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'status' => $request->status,
+            'attendee' => $request->attendee
         ]);
 
         return response()->json([
             "missatge" => 'Usuari registrat correctament',
-
+            $user
         ], 200);
     }
 

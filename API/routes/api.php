@@ -27,11 +27,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
 });
 
-// //Users
-// Route::controller(UserController::class)->group(function () {
-//     Route::get('users', 'getUsers');
-//     Route::get('users/{user}', 'showUser');
-// });
+Route::controller(MeetingController::class)->group(function () {
+    Route::get('meetings/{meeting}', 'showMeeting');
+});
 
 
 //Auth & Users Middleware
@@ -50,5 +48,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('meetings/{meeting}', [MeetingController::class, 'updateMeeting']);
     Route::delete('meetings/{meeting}', [MeetingController::class, 'destroyMeeting']);
     Route::get('meetings',  [MeetingController::class, 'getMeetings']);
-    Route::get('meetings/{meeting}', [MeetingController::class, 'showMeeting']);
+    // Route::get('meetings/{meeting}', [MeetingController::class, 'showMeeting']);
 });

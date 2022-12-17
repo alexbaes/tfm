@@ -18,7 +18,6 @@ class MeetingSeeder extends Seeder
     {
         DB::table('meetings')->insert([
             'title' => 'Aniversari',
-            'description' => "Celebració de l'aniversari dels 50 anys",
             'place' => 'Restaurant Censals',
             'start_date' =>  Carbon::parse('2022-05-01'),
             'end_date' =>  Carbon::parse('2000-05-01'),
@@ -28,7 +27,6 @@ class MeetingSeeder extends Seeder
 
         DB::table('meetings')->insert([
             'title' => 'Aniversari 2',
-            'description' => "Celebració de l'aniversari dels 70 anys",
             'place' => 'Restaurant Ambigú',
             'start_date' =>  Carbon::parse('2022/10/05'),
             'end_date' =>  Carbon::parse('2022/12/05'),
@@ -38,7 +36,6 @@ class MeetingSeeder extends Seeder
 
         DB::table('meetings')->insert([
             'title' => 'Aniversari 3',
-            'description' => "Celebració de l'aniversari dels 90 anys",
             'place' => 'Restaurant Subirats',
             'start_date' =>  Carbon::parse('2022/10/30'),
             'end_date' =>  Carbon::parse('2022/12/30'),

@@ -16,10 +16,8 @@ class UserController extends Controller
 
         $users = User::all();
 
-        if ($users->isEmpty())
-            return response()->json('No hi ha usuaris');
-
-        return UserResource::collection($users);
+        // return UserResource::collection($users);
+        return response()->json($users, 200);
     }
 
     public function showUser(User $user)

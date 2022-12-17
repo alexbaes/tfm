@@ -1,43 +1,41 @@
-<!-- <div class="login-form">
+<div class="container">
   <mat-card>
     <mat-card-content>
       <h1>LOGIN</h1>
-      <mat-form-field class="full-width-input">
-        <input type="email" matInput placeholder="Email" required>
-      </mat-form-field>
-      <mat-form-field class="full-width-input separator">
-        <input type="password" matInput placeholder="Password" required>
-      </mat-form-field>
-      <button type="submit" mat-raised-button color="primary">Login</button>
+      <form (ngSubmit)="login()" [formGroup]="loginForm" class="form-group">
+
+        <mat-form-field>
+          <input type="email" matInput placeholder="Email" required [formControl]="email">
+        </mat-form-field>
+        <div *ngIf="email.errors">
+          <span
+            style="color: red"
+            *ngIf="email.errors && (email.touched || email.dirty)"
+          >
+            <span *ngIf="email.errors['required']">Email is required</span>
+            <span *ngIf="email.errors['pattern']">Email not a valid format</span>
+          </span>
+        </div>
+        <br>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" required [formControl]="password">
+        </mat-form-field>
+        <div *ngIf="password.errors">
+          <span
+            style="color: red"
+            *ngIf="password.errors && (password.touched || password.dirty)"
+          >
+            <span *ngIf="password.errors['required']">Password is required</span>
+            <span *ngIf="password.errors['minlength']"
+              >Password must be greater than 8 characters</span
+            >
+          </span>
+        </div>
+        <br>
+        <span style="color: red" *ngIf="error">Dades introduïdes no vàlides.</span>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+      </form>
     </mat-card-content>
   </mat-card>
-</div> -->
-
-<h3>{{ message }}</h3>
-<div class="form-group">
-  <form (ngSubmit)="login()" [formGroup]="loginForm">
-    <div class="user-name">
-      <input
-        type="text"
-        placeholder="Email"
-        required
-        name="email"
-        formControlName="email"
-      />
-
-    </div>
-    <div class="password">
-      <input
-        type="password"
-        placeholder="Password"
-        required
-        name="password"
-        formControlName="password"
-      />
-
-    </div>
-    <button type="submit">Login</button>
-  </form>
 </div>
-
 

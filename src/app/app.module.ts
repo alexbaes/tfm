@@ -4,12 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@app/material.module';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { SidebarModule } from './shared/components/sidebar/sidebar.module';
+
+import { AuthModule } from './auth.module';
+import { MeetingModule } from './meeting.module';
+import { FooterComponent } from './pages/shared/footer/footer.component';
+import { HeaderComponent } from './pages/shared/header/header.component';
+import { AuthInterceptorService } from './Services/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -18,10 +21,17 @@ import { SidebarModule } from './shared/components/sidebar/sidebar.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    SidebarModule,
     HttpClientModule,
+    AuthModule,
+    MeetingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -11,15 +11,15 @@ class Meeting extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'place', 'start_date', 'end_date', 'slug', 'user_id'];
+    protected $fillable = ['title', 'place', 'start_date', 'end_date', 'slug', 'user_id'];
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 }

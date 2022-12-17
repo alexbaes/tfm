@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-card>
+      <mat-card-content>
+        <h1>EDITAR</h1>
+        <form (ngSubmit)="editMeeting()" [formGroup]="meetingForm" class="form-group">
+            <mat-form-field >
+                <input type="title" matInput placeholder="Title" required [formControl]="title">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Place" required [formControl]="place">
+             </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <input type="date" matInput placeholder="Start Date" required [formControl]="start_date" >
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input type="date" matInput placeholder="End Date" required [formControl]="end_date">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Slug" required [formControl]="slug">
+            </mat-form-field>
+
+            <br>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!meetingForm.valid">Acceptar</button>
+            <button mat-raised-button color="accent" onclick="reset()">Reset</button>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
+        'attendee'
     ];
 
     /**
@@ -45,6 +47,6 @@ class User extends Authenticatable
 
     public function meetings()
     {
-        return $this->hasMany(Meeting::class);
+        return $this->belongsToMany(Meeting::class);
     }
 }

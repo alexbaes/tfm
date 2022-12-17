@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-card>
+      <mat-card-content>
+          <div style="display: flex;">
+
+              <div style="width: 30%">
+                <h1>Detall de l'esdeveniment</h1>
+                  <p>Títol: <span>{{meeting.title}}</span></p>
+                  <p>Lloc: <span>{{meeting.place}}</span></p>
+                  <p>Dia inici: <span>{{meeting.start_date}}</span></p>
+                  <p>Dia fi: <span>{{meeting.end_date}}</span></p>
+              </div>
+              <div>
+                <h2>Formulari de registre</h2>
+                <form (ngSubmit)="registerAttendee()" [formGroup]="attendeeForm"  class="form-group">
+
+                  <mat-form-field >
+                    <input type="name" matInput placeholder="Name" required [formControl]="name">
+                </mat-form-field>
+                <div *ngIf="name.errors">
+                    <span
+                      style="color: red"
+                      *ngIf="name.errors && (name.touched || name.dirty)"
+                    >
+                      <span *ngIf="name.errors['required']">El nom és requerit</span>
+                      <span *ngIf="name.errors['minlength']">El nom ha de tenir al menys tres caràcters</span>
+                      <span *ngIf="name.errors['maxlength']">El nom pot tenir màxim 55 caràcters</span>
+                    </span>
+                  </div>
+                 <br>
+                  <p>Assistiràs?</p>
+                  <mat-radio-group aria-label="Assitiràs?">
+                    <mat-radio-button style="margin: 0 10px;" value="1">Sí</mat-radio-button>
+                    <mat-radio-button style="margin: 0 10px;" value="0">No</mat-radio-button>
+                  </mat-radio-group>
+                  <div *ngIf="name.errors">
+                    <span
+                      style="color: red"
+                      *ngIf="name.errors && (name.touched || name.dirty)"
+                    >
+                      <span *ngIf="name.errors['required']">Indica una opció</span>
+                    </span>
+                  </div>
+                  <br>
+                  <button type="submit" mat-raised-button color="primary">Enviar</button>
+              </form>
+              </div>
+          </div>
+
+      </mat-card-content>
+  </mat-card>
+</div>

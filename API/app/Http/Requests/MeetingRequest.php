@@ -25,7 +25,6 @@ class MeetingRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description' => 'string',
             'place' => 'required|string',
             'start_date' => 'required',
             'end_date' => 'required',

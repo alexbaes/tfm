@@ -1,0 +1,21 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <h1>Detall de l'esdeveniments</h1>
+            <div style="display: flex;">
+                <div style="width: 30%">
+                    <p>Títol: <span>{{meeting.title}}</span></p>
+                    <p>Lloc: <span>{{meeting.place}}</span></p>
+                    <p>Dia inici: <span>{{meeting.start_date}}</span></p>
+                    <p>Dia fi: <span>{{meeting.end_date}}</span></p>
+                </div>
+                <div style="width: 70%;">
+                    <ul>
+                        <li *ngFor="let user of users">{{user.name}}</li>
+                    </ul>
+
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

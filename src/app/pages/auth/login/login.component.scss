@@ -1,17 +1,15 @@
-.login-form{
-  padding: 4rem 1rem;
-  mat-card{
-    max-width: 300px;
-    margin: 2rem auto;
-    text-align: center;
-    height: 300px;
+.container{
+    display: flex;
+    justify-content: center;
   }
 
-  .full-width-input, button{
+  mat-card {
+      max-width: 350px;
+      margin: 2rem auto;
+      text-align: center;
+      padding: 2rem 3rem;
+  }
+
+  button{
     width: 100%;
   }
-
-  .separator{
-    margin-bottom: 2rem;
-  }
-}
