@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@app/Services/auth.service';
+import { HeaderMenu } from '@app/Models/header-menu';
+import { HeaderMenuService } from '@app/Services/header-menu.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +10,29 @@ import { AuthService } from '@app/Services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  showAuth: boolean = false;
   showAuthSection: boolean;
   showNoAuthSection: boolean;
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+    private router: Router,
+    private cookies: CookieService,
+    private headerMenuService: HeaderMenuService
+  ) {
+    this.cookies.delete('access_token');
     this.showAuthSection = false;
     this.showNoAuthSection = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.headerMenuService.headerManagement.subscribe(
+      (headerInfo: HeaderMenu) => {
+        if (headerInfo) {
+          this.showAuthSection = headerInfo.showAuthSection;
+          this.showNoAuthSection = headerInfo.showNoAuthSection;
+        }
+      }
+    );
+  }
 
   home(): void {
     this.router.navigateByUrl('home');
@@ -30,7 +47,14 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.deleteToken();
-    this.router.navigateByUrl('');
+    this.cookies.delete('access_token');
+
+    const headerInfo: HeaderMenu = {
+      showAuthSection: false,
+      showNoAuthSection: true,
+    };
+    this.headerMenuService.headerManagement.next(headerInfo);
+
+    this.router.navigateByUrl('home');
   }
 }

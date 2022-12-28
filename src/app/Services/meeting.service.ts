@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MeetingDTO } from '@app/Models/meeting.dto';
+import { UserDTO } from '@app/Models/user.dto';
 import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
@@ -11,6 +12,10 @@ export class MeetingService {
 
   constructor(private http: HttpClient) {
     this.urlApi = 'http://localhost:8000/api/meetings/';
+  }
+
+  registerUser(user: UserDTO, meetingId: string | null): Observable<any> {
+    return this.http.post(this.urlApi + meetingId, user);
   }
 
   getMeetings(): Observable<MeetingDTO[]> {

@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@app/material.module';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth.module';
 import { MeetingModule } from './meeting.module';
 import { FooterComponent } from './pages/shared/footer/footer.component';
@@ -24,6 +25,7 @@ import { AuthInterceptorService } from './Services/auth-interceptor.service';
     HttpClientModule,
     AuthModule,
     MeetingModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

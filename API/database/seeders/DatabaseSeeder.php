@@ -24,6 +24,14 @@ class DatabaseSeeder extends Seeder
             'attendee' => true
         ]);
 
+        User::create([
+            'name' => 'Eric Barbera',
+            'email' => 'eric@gmail.com',
+            'password' => bcrypt('123456'),
+            'status' => 1,
+            'attendee' => true
+        ]);
+
         $this->call([
             MeetingSeeder::class,
         ]);

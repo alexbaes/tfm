@@ -1,14 +1,15 @@
 <mat-toolbar color="primary">
-  <button (click)="home()" mat-button>Meeting App</button>
+    <img class="logo" src="assets/nemon.png">
 
-  <div>
+  <div *ngIf="showNoAuthSection">
     <button (click)="login()" mat-button>Login</button>
     <button (click)="register()" mat-button>Register</button>
   </div>
 
-  <div>
+  <div *ngIf="showAuthSection">
     <button (click)="logout()" mat-button>Logout</button>
   </div>
 
 </mat-toolbar>
+
 

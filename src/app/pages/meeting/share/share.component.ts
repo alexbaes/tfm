@@ -8,7 +8,6 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { MeetingDTO } from '@app/Models/meeting.dto';
 import { UserDTO } from '@app/Models/user.dto';
-import { AuthService } from '@app/Services/auth.service';
 import { MeetingService } from '@app/Services/meeting.service';
 
 @Component({
@@ -26,13 +25,12 @@ export class ShareComponent implements OnInit {
   meetingId!: string | null;
 
   constructor(
-    private authService: AuthService,
     private meetService: MeetingService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router
   ) {
-    this.user = new UserDTO('', '', '', 2, false);
+    this.user = new UserDTO('', '', '', 2, true);
 
     this.name = new FormControl(this.user.name, [
       Validators.required,
@@ -44,8 +42,8 @@ export class ShareComponent implements OnInit {
 
     this.attendeeForm = this.fb.group({
       name: this.name,
-      attendee: this.attendee,
       status: 2,
+      attendee: this.attendee,
     });
   }
 
@@ -54,7 +52,7 @@ export class ShareComponent implements OnInit {
     this.meetService.getMeetingById(this.meetingId).subscribe({
       next: (data) => {
         this.meeting = data;
-        console.log(data);
+        console.log(this.meeting);
       },
       error: (err) => {
         console.log(err.error);
@@ -64,14 +62,18 @@ export class ShareComponent implements OnInit {
 
   registerAttendee() {
     const register = this.attendeeForm.value;
-    this.authService.register(register).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.router.navigateByUrl('');
-      },
-      error: (err) => {
-        console.log(err.error);
-      },
-    });
+
+    if (!register.attendee) {
+      console.log(register.name + 'no assistirà');
+    } else {
+      this.meetService.registerUser(register, this.meetingId).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err.error);
+        },
+      });
+    }
   }
 }

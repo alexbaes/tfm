@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
+
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
@@ -25,6 +26,7 @@ class AuthController extends Controller
             $user
         ], 200);
     }
+
 
     public function login(Request $request)
     {

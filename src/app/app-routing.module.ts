@@ -11,43 +11,30 @@ import { ShareComponent } from './pages/meeting/share/share.component';
 import { ShowComponent } from './pages/meeting/show/show.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  {
-    path: 'login',
-    component: LoginComponent,
-    pathMatch: 'full',
-    // canActivate: [LoginGuard],
-  },
-  { path: 'register', component: RegisterComponent, pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'meetings/share/:id', component: ShareComponent },
   {
     path: 'meetings/index',
     component: IndexComponent,
-    pathMatch: 'full',
     canActivate: [AuthGuard],
   },
   {
     path: 'meetings/create',
     component: CreateComponent,
-    pathMatch: 'full',
     canActivate: [AuthGuard],
   },
   {
     path: 'meetings/edit/:id',
     component: EditComponent,
-    pathMatch: 'full',
     canActivate: [AuthGuard],
   },
   {
     path: 'meetings/show/:id',
     component: ShowComponent,
-    pathMatch: 'full',
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'meetings/share/:id',
-    component: ShareComponent,
-    pathMatch: 'full',
   },
 ];
 

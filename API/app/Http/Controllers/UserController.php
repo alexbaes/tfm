@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\MeetingUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Meeting;
 
 class UserController extends Controller
 {
+
+    public function getUsersByMeeting(Meeting $meeting)
+    {
+        return response()->json($meeting->users, 200);
+    }
+
     public function getUsers()
     {
 
         $users = User::all();
 
-        // return UserResource::collection($users);
         return response()->json($users, 200);
     }
 

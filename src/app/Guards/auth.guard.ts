@@ -24,11 +24,11 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     const access_token = this.authService.getToken();
 
-    if (!access_token) {
-      console.log('No tens permisos');
-      this.router.navigate(['']);
-      return false;
+    if (access_token) {
+      return true;
     }
-    return true;
+
+    this.router.navigate(['/login']);
+    return false;
   }
 }

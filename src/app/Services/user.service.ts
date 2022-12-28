@@ -10,7 +10,13 @@ export class UserService {
   private urlApi: string;
 
   constructor(private http: HttpClient) {
-    this.urlApi = 'http://localhost:8000/api/users';
+    this.urlApi = 'http://localhost:8000/api/users/';
+  }
+
+  getUsersByMeeting(meetingId: string | null): Observable<UserDTO[]> {
+    return this.http
+      .get<UserDTO[]>(this.urlApi + meetingId)
+      .pipe(catchError(this.errorHandler));
   }
 
   getUsers(): Observable<UserDTO[]> {

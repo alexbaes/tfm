@@ -32,8 +32,9 @@
           </span>
         </div>
         <br>
-        <span style="color: red" *ngIf="error">Dades introduïdes no vàlides.</span>
-        <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+        <span style="color: red">{{error}}</span>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid" >Login</button>
       </form>
     </mat-card-content>
   </mat-card>

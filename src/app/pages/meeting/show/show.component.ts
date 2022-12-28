@@ -13,7 +13,9 @@ import { UserService } from '@app/Services/user.service';
 export class ShowComponent implements OnInit {
   users: UserDTO[] = [];
   meeting: MeetingDTO;
-  meetingId!: string | null;
+  meetingId: string | null;
+  attendeeList: UserDTO[] = [];
+  noAttendeeList: UserDTO[] = [];
 
   constructor(
     private userService: UserService,
@@ -24,18 +26,30 @@ export class ShowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((data: UserDTO[]) => {
-      this.users = data;
-      console.log(this.users);
-    });
-
     this.meetService.getMeetingById(this.meetingId).subscribe({
       next: (data) => {
         this.meeting = data;
-        console.log(data);
+        console.log(this.meeting);
       },
       error: (err) => {
         console.log(err.error);
+      },
+    });
+
+    this.userService.getUsersByMeeting(this.meetingId).subscribe({
+      next: (data) => {
+        this.users = data;
+
+        this.users.forEach((user) => {
+          if (!user.attendee) {
+            this.noAttendeeList.push(user);
+            console.log('No assistirà: ' + user.name);
+          }
+          if (user.attendee) {
+            this.attendeeList.push(user);
+            console.log('Assistirà ' + user.name);
+          }
+        });
       },
     });
   }

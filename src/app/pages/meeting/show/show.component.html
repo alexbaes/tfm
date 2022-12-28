@@ -11,10 +11,14 @@
                 </div>
                 <div style="width: 70%;">
                     <ul>
-                        <li *ngFor="let user of users">{{user.name}}</li>
+                        <li *ngFor="let user of attendeeList">{{user.name}}</li>
                     </ul>
-
                 </div>
+                <div style="width: 70%;">
+                  <ul>
+                      <li *ngFor="let user of noAttendeeList">{{user.name}}</li>
+                  </ul>
+              </div>
             </div>
         </mat-card-content>
     </mat-card>

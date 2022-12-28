@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthDTO } from '@app/Models/auth.dto';
+import { HeaderMenu } from '@app/Models/header-menu';
+import { HeaderMenuService } from '@app/Services/header-menu.service';
 import { AuthService } from '../../../Services/auth.service';
 
 @Component({
@@ -20,11 +22,12 @@ export class LoginComponent {
   password: FormControl;
   loginForm: FormGroup;
 
-  error: string;
+  error: string = '';
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private headerMenuService: HeaderMenuService,
     public router: Router
   ) {
     this.user = new AuthDTO(0, '', '', '');
@@ -45,19 +48,23 @@ export class LoginComponent {
   }
 
   login(): void {
-    let token = this.authService.deleteToken();
-    if (token == null) {
-      const login = this.loginForm.value;
-      this.authService.login(login).subscribe({
-        next: (data) => {
-          this.authService.setToken(data.accessToken);
-          this.router.navigateByUrl('/meetings/index');
-        },
-        error: (err) => {
-          this.error = err.error.missatge;
-          console.log(err.error.missatge);
-        },
-      });
-    }
+    const user = this.loginForm.value;
+    this.authService.login(user).subscribe({
+      next: (user) => {
+        console.log(user);
+        this.authService.setToken(user.accessToken);
+        this.error = '';
+        const headerInfo: HeaderMenu = {
+          showAuthSection: true,
+          showNoAuthSection: false,
+        };
+        this.headerMenuService.headerManagement.next(headerInfo);
+        this.router.navigateByUrl('/meetings/index');
+      },
+      error: (err) => {
+        this.error = err.error.missatge;
+        console.log(err.error.missatge);
+      },
+    });
   }
 }

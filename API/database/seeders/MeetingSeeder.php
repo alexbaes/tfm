@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Meeting;
 
 class MeetingSeeder extends Seeder
 {
@@ -42,5 +43,11 @@ class MeetingSeeder extends Seeder
             'slug' => 'aniversari-90-anys',
             'user_id' => '1'
         ]);
+
+        $meetings = Meeting::all();
+
+        foreach ($meetings as $meeting) {
+            $meeting->users()->attach([rand(1, 2)]);
+        }
     }
 }

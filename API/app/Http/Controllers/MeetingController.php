@@ -11,6 +11,27 @@ use App\Models\User;
 
 class MeetingController extends Controller
 {
+    public function registerAttendee(Request $request, Meeting $meeting)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'status' => $request->status,
+            'attendee' => $request->attendee
+        ]);
+
+        $meeting_id = $meeting->id;
+        $user_id = $user->id;
+
+        $user->meetings()->attach([$user_id => ['meeting_id' => $meeting_id]]);
+
+        return response()->json([
+            "missatge" => 'Usuari registrat correctament',
+            $user
+        ], 200);
+    }
+
     public function getMeetings()
     {
 

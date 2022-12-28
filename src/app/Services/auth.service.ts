@@ -19,13 +19,9 @@ export class AuthService {
     return this.http.post('http://localhost:8000/api/register', user);
   }
   setToken(token: string) {
-    this.cookies.set('access_token', token, 60);
+    this.cookies.set('access_token', token);
   }
   getToken() {
     return this.cookies.get('access_token');
-  }
-
-  deleteToken() {
-    return this.cookies.delete('access_token');
   }
 }
