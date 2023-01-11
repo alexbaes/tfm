@@ -81,4 +81,8 @@ export class ShowComponent implements OnInit {
       }
     );
   }
+
+  updateMeeting(id: string | null): void {
+    this.router.navigateByUrl('/meetings/edit/' + id);
+  }
 }

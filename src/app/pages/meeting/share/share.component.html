@@ -29,8 +29,8 @@
 
             <p class="mt-10">Assistiràs?</p>
             <mat-radio-group [formControl]="attendee">
-              <mat-radio-button [value]=1 >Sí</mat-radio-button>
-              <mat-radio-button [value]=0 class="ml-20">No</mat-radio-button>
+              <mat-radio-button value=1 >Sí</mat-radio-button>
+              <mat-radio-button value=0 class="ml-20">No</mat-radio-button>
             </mat-radio-group>
             <br>
             <button class="mt-40" type="submit" mat-raised-button color="primary" [disabled]="!attendeeForm.valid">Enviar</button>

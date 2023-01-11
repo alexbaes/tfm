@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -13,6 +20,17 @@ import { AuthService } from '../../../Services/auth.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0.2,
+        })
+      ),
+      transition('void <=>*', animate(1300)),
+    ]),
+  ],
 })
 export class RegisterComponent {
   user: UserDTO;

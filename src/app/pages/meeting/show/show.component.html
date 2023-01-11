@@ -3,6 +3,7 @@
       <mat-card-content *ngIf="meeting" class="content-card">
         <div class="container-info">
           <h1>Detall de l'esdeveniments</h1>
+          <button class="mt-10 mb-20" (click)="updateMeeting(meetingId)" mat-raised-button color="primary"><span>Editar</span></button>
           <p>Títol: <span><strong>{{meeting.title}}</strong></span></p>
           <p>Lloc: <span><strong>{{meeting.place}}</strong></span></p>
           <p>Dia inici: <span><strong>{{meeting.start_date}}</strong></span></p>
