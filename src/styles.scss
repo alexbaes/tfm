@@ -1,4 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { margin: 0 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  max-width: 600px;
+  padding: 0 16px;
+  margin: 50px auto;
+  align-items: center;
+}
+
+h1{
+  font-size: 2rem !important;
+  line-height: 1.2 !important;
+  font-weight: 500 !important;
+}
+
+p{
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+
+.card {
+  width: 360px;
+  padding: 4rem 2rem !important;
+  border-radius: 13px !important;
+}
+
+.text-center { text-align: center; }
+
+.main-color { color: #3f51b5 };
+
+.w-50 { width: 50%; }
+
+.w-80 { width: 80%; }
+
+.w-100 { width: 100%; }
+
+.login-text {
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.mt-10 { margin-top: 10px !important}
+
+.mt-40 { margin-top: 40px !important}
+
+.mr-70 { margin-right: 70px !important;}
+
+.ml-20 { margin-left: 20px !important}
+
+@media (min-width: 768px) {
+
+  .card {
+    width: 500px;
+    padding: 4rem !important;
+  }
+}
+
+
+@media (min-width: 1024px) {
+
+  .display-1 { font-size: 4rem !important; }
+
+  .card { width: 900px; }
+
+}

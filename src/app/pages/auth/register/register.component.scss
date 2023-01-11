@@ -1,16 +1,10 @@
-.container{
-    display: flex;
-    justify-content: center;
-  }
+.link-text{
+  margin-top: 40px;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
 
-  mat-card {
-      max-width: 350px;
-      margin: 2rem auto;
-      text-align: center;
-      padding: 2rem 4rem;
-  }
-
-button{
-    width: 100%;
-  }
-
+.link-text a {
+  text-decoration: none;
+  color: #3F51B5;
+}

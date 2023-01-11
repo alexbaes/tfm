@@ -46,6 +46,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('register');
   }
 
+  index(): void {
+    this.router.navigateByUrl('meetings/index');
+  }
+
   logout(): void {
     this.cookies.delete('access_token');
 

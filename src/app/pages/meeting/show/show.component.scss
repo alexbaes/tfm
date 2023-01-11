@@ -1,0 +1,56 @@
+.mat-list-base .mat-list-item{
+  height: 32px;
+  align-items: center;
+}
+
+.no-attendee-list { margin-top: 40px; }
+
+small { display: block;}
+
+.icon-list {
+  margin-right: 10px;
+  opacity: .5;
+}
+
+@media (min-width: 768px) {
+
+  .list-info {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .attendee-list,
+  .no-attendee-list {
+    width: 50%;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .attendee-list {
+    margin-right: 10px;
+    border-right: 2px solid #3f51b5;
+  }
+
+  .no-attendee-list {
+    margin-left: 10px;
+    padding-left: 40px;
+    border-left: 2px solid #3f51b5;
+  }
+
+}
+
+@media (min-width: 1024px) {
+
+  .content-card {
+    width: 900px;
+    display: flex;
+    flex-flow: row;
+  }
+
+  .container-info,
+  .list-info {
+    width: 50%;
+  }
+
+ }
+

@@ -8,6 +8,7 @@ import { EditComponent } from './pages/meeting/edit/edit.component';
 import { IndexComponent } from './pages/meeting/index/index.component';
 import { ShareComponent } from './pages/meeting/share/share.component';
 import { ShowComponent } from './pages/meeting/show/show.component';
+import { PopUpComponent } from './pages/shared/pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ShowComponent } from './pages/meeting/show/show.component';
     EditComponent,
     ShowComponent,
     ShareComponent,
+    PopUpComponent,
   ],
   imports: [
     CommonModule,

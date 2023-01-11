@@ -1,0 +1,18 @@
+.message { color: #3f51b5 }
+
+@media (min-width: 1024px) {
+
+  .content-card {
+    width: 900px;
+    display: flex;
+    flex-flow: row;
+  }
+
+  .event-info,
+  .event-form {
+    width: 50%;
+  }
+
+  .event-info { border-right: 5px solid #3f51b5; }
+
+}

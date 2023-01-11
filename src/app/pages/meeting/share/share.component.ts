@@ -21,14 +21,16 @@ export class ShareComponent implements OnInit {
   name: FormControl;
   attendee: FormControl;
   attendeeForm: FormGroup;
-
   meetingId!: string | null;
+  url: string | null;
+  successMsg: boolean = false;
+  message: string = '';
 
   constructor(
     private meetService: MeetingService,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {
     this.user = new UserDTO('', '', '', 2, true);
 
@@ -52,7 +54,7 @@ export class ShareComponent implements OnInit {
     this.meetService.getMeetingById(this.meetingId).subscribe({
       next: (data) => {
         this.meeting = data;
-        console.log(this.meeting);
+        // console.log(this.meeting);
       },
       error: (err) => {
         console.log(err.error);
@@ -64,7 +66,7 @@ export class ShareComponent implements OnInit {
     const register = this.attendeeForm.value;
 
     if (!register.attendee) {
-      console.log(register.name + 'no assistirà');
+      console.log(register.name + ' no assistirà');
     } else {
       this.meetService.registerUser(register, this.meetingId).subscribe({
         next: (data) => {
@@ -75,5 +77,9 @@ export class ShareComponent implements OnInit {
         },
       });
     }
+    this.message = 'Formulari enviat, gràcies !';
+    setTimeout(() => {
+      this.router.navigateByUrl('/');
+    }, 2500);
   }
 }

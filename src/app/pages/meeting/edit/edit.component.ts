@@ -41,11 +41,11 @@ export class EditComponent implements OnInit {
     this.title = new FormControl(this.meeting.title, [Validators.required]);
     this.place = new FormControl(this.meeting.place, [Validators.required]);
     this.start_date = new FormControl(
-      formatDate(this.meeting.start_date, 'yyyy-MM-dd', 'en'),
+      formatDate(this.meeting.start_date, 'dd-MM-yyyy hh:mm', 'en'),
       [Validators.required]
     );
     this.end_date = new FormControl(
-      formatDate(this.meeting.end_date, 'yyyy-MM-dd', 'en'),
+      formatDate(this.meeting.end_date, 'dd-MM-yyy hh:mm', 'en'),
       [Validators.required]
     );
     this.slug = new FormControl(this.meeting.slug, [Validators.required]);

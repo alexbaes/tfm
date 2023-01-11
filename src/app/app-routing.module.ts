@@ -11,10 +11,10 @@ import { ShareComponent } from './pages/meeting/share/share.component';
 import { ShowComponent } from './pages/meeting/show/show.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'meetings/share/:id', component: ShareComponent },
   {
     path: 'meetings/index',

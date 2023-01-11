@@ -1,23 +1,24 @@
   <div class="container">
-    <mat-card>
+    <mat-card class="card text-center mat-elevation-z8">
       <mat-card-content>
-        <h1>REGISTER</h1>
+        <h1>REGISTRAR-SE</h1>
+        <p class="login-text">Planifica la teva llista d'assistents</p>
         <form (ngSubmit)="register()" [formGroup]="registerForm" class="form-group">
-            <mat-form-field >
-                <input type="name" matInput placeholder="Name" required [formControl]="name">
+            <mat-form-field  class="w-80" >
+                <input type="name" matInput placeholder="Nom" required [formControl]="name">
             </mat-form-field>
             <div *ngIf="name.errors">
                 <span
                   style="color: red"
                   *ngIf="name.errors && (name.touched || name.dirty)"
                 >
-                  <span *ngIf="name.errors['required']">Name is required</span>
-                  <span *ngIf="name.errors['minlength']">Name must be greater than 3 characters</span>
-                  <span *ngIf="name.errors['maxlength']">Name can be max 55 characters long</span>
+                  <span *ngIf="name.errors['required']">El nom és requerit</span>
+                  <span *ngIf="name.errors['minlength']">El nom ha de tenir al menys 3 caràcters</span>
+                  <span *ngIf="name.errors['maxlength']">El nom ha de tenir màxim 55 caràcters</span>
                 </span>
               </div>
             <br>
-            <mat-form-field>
+            <mat-form-field class="w-80">
                 <input type="email" matInput placeholder="Email" required [formControl]="email">
              </mat-form-field>
              <div>
@@ -28,29 +29,34 @@
                   style="color: red"
                   *ngIf="email.errors && (email.touched || email.dirty)"
                 >
-                  <span *ngIf="email.errors['required']">Email is required</span>
-                  <span *ngIf="email.errors['pattern']">Email not a valid format</span>
+                  <span *ngIf="email.errors['required']">L'email és requerit</span>
+                  <span *ngIf="email.errors['pattern']">El format de l'email no és vàlid</span>
 
                 </span>
               </div>
             <br>
-            <mat-form-field>
-                <input type="password" matInput placeholder="Password" required [formControl]="password">
+            <mat-form-field class="w-80">
+                <input type="password" matInput placeholder="Contrasenya" required [formControl]="password">
             </mat-form-field>
             <div *ngIf="password.errors">
                 <span
                   style="color: red"
                   *ngIf="password.errors && (password.touched || password.dirty)"
                 >
-                  <span *ngIf="password.errors['required']">Password is required</span>
+                  <span *ngIf="password.errors['required']">Contrasenya requerida</span>
                   <span *ngIf="password.errors['minlength']"
-                    >Password must be greater than 8 characters</span
+                    >La contrasenya al menos ha de tenir 6 caràcters</span
                   >
                 </span>
               </div>
             <br>
-            <button type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid">Register</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid">Registrar-se</button>
+
         </form>
+        <p class="link-text">Ja tens un compte? <a href="/login">Inicia sessió</a> </p>
+
       </mat-card-content>
     </mat-card>
+
   </div>
+

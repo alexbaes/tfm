@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('place');
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->string('slug');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

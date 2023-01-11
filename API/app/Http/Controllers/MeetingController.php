@@ -37,16 +37,13 @@ class MeetingController extends Controller
 
         $meetings = Meeting::where('user_id', Auth::user()->id)->get();
 
-        // return MeetingResource::collection($meetings);
         return response()->json($meetings, 200);
     }
 
     public function showMeeting(Meeting $meeting)
     {
-        // $this->authorize('organizer', $meeting);
 
         return response()->json($meeting, 200);
-        // return new MeetingResource($meeting);
     }
 
     public function storeMeeting(MeetingRequest $request)
@@ -57,8 +54,6 @@ class MeetingController extends Controller
             'res' => true,
             'msg' => 'Guardat correctament'
         ], 200);
-
-        // return new MeetingResource(Meeting::create($request->all()));
     }
 
     public function updateMeeting(MeetingRequest $request, Meeting $meeting)
@@ -71,8 +66,6 @@ class MeetingController extends Controller
             'res' => true,
             'msg' => 'Actualitzat correctament'
         ], 200);
-
-        // return new MeetingResource($meeting);
     }
 
     public function destroyMeeting(Meeting $meeting)
@@ -84,6 +77,5 @@ class MeetingController extends Controller
             'res' => true,
             'msg' => 'Eliminat correctament'
         ], 200);
-        // return new MeetingResource($meeting);
     }
 }

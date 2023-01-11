@@ -1,4 +1,38 @@
-.footer{
+.footer {
+    position: fixed;
+    left: 0;
+    bottom :0;
+    height: 80px;
+}
 
-    bottom:0;
+.footer-content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1600px;
+  width: 100%;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: .9rem;
+}
+
+.footer-list {
+  font-size: .8rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.footer-list li { display: inline; }
+
+.footer-list li:nth-child(n+2) { margin-left: 18px; }
+
+@media (min-width: 768px) {
+  .footer { height: 40px; }
+  .footer-content { flex-flow: row; }
+
+  .footer-content p { margin-right: 20px;}
 }

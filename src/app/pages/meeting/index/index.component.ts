@@ -10,6 +10,8 @@ import { MeetingService } from '@app/Services/meeting.service';
 })
 export class IndexComponent implements OnInit {
   meetings: MeetingDTO[] = [];
+  displayedColumns: string[] = ['title', 'actions'];
+  url: string;
 
   constructor(private meetService: MeetingService, private router: Router) {}
 
@@ -20,13 +22,19 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  // loadMeetings(): void {
-  //   this.meetService.getMeetings().subscribe((data: MeetingDTO[]) => {
-  //     this.meetings = data;
-  //     console.log(this.meetings);
-  //     return data;
-  //   });
-  // }
+  shareMeeting(id: string) {
+    this.url = `http://localhost:4200/meetings/share/${id}`;
+    navigator.clipboard.writeText(this.url).then(
+      function () {
+        console.log('Copied!');
+      },
+      function () {
+        console.log('Copy error');
+      }
+    );
+
+    alert('Url copiada ! ' + this.url);
+  }
 
   createMeeting(): void {
     this.router.navigateByUrl('/meetings/create');
@@ -38,10 +46,6 @@ export class IndexComponent implements OnInit {
 
   showMeeting(id: string): void {
     this.router.navigateByUrl('/meetings/show/' + id);
-  }
-
-  shareMeeting(id: string): void {
-    this.router.navigateByUrl('/meetings/share/' + id);
   }
 
   deleteMeeting(id: string) {

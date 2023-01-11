@@ -1,25 +1,35 @@
 <div class="container">
-    <mat-card>
-        <mat-card-content>
-            <h1>Detall de l'esdeveniments</h1>
-            <div style="display: flex;">
-                <div style="width: 30%">
-                    <p>Títol: <span>{{meeting.title}}</span></p>
-                    <p>Lloc: <span>{{meeting.place}}</span></p>
-                    <p>Dia inici: <span>{{meeting.start_date}}</span></p>
-                    <p>Dia fi: <span>{{meeting.end_date}}</span></p>
-                </div>
-                <div style="width: 70%;">
-                    <ul>
-                        <li *ngFor="let user of attendeeList">{{user.name}}</li>
-                    </ul>
-                </div>
-                <div style="width: 70%;">
-                  <ul>
-                      <li *ngFor="let user of noAttendeeList">{{user.name}}</li>
-                  </ul>
-              </div>
-            </div>
-        </mat-card-content>
-    </mat-card>
+  <mat-card class="card mat-elevation-z8">
+      <mat-card-content *ngIf="meeting" class="content-card">
+        <div class="container-info">
+          <h1>Detall de l'esdeveniments</h1>
+          <p>Títol: <span><strong>{{meeting.title}}</strong></span></p>
+          <p>Lloc: <span><strong>{{meeting.place}}</strong></span></p>
+          <p>Dia inici: <span><strong>{{meeting.start_date}}</strong></span></p>
+          <p>Dia fi: <span><strong>{{meeting.end_date}}</strong></span></p>
+          <button class="mt-40" (click)="openDialog()" mat-raised-button color="accent">COMPARTEIX !</button>
+          <small>*El llistat d'assitents no el veuran els altres usuaris</small>
+        </div>
+        <div class="list-info mt-40">
+          <div class="attendee-list" >
+            <p><strong>Assistirà</strong></p>
+            <mat-list>
+              <mat-list-item *ngFor="let user of attendeeList">
+                <mat-icon class="icon-list" matListItemIcon>check</mat-icon>
+                <div matListItemTitle>{{user.name}}</div>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="no-attendee-list">
+            <p><strong> No Assisitrà</strong></p>
+            <mat-list>
+              <mat-list-item *ngFor="let user of noAttendeeList">
+                <mat-icon class="icon-list" matListItemIcon>clear</mat-icon>
+                <div matListItemTitle>{{user.name}}</div>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+      </mat-card-content>
+  </mat-card>
 </div>

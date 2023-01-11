@@ -11,12 +11,13 @@ import { MaterialModule } from '@app/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth.module';
 import { MeetingModule } from './meeting.module';
+import { HomeComponent } from './pages/home/home.component';
 import { FooterComponent } from './pages/shared/footer/footer.component';
 import { HeaderComponent } from './pages/shared/header/header.component';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

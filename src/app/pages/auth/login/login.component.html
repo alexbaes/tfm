@@ -1,10 +1,11 @@
 <div class="container">
-  <mat-card>
+  <mat-card class="card text-center mat-elevation-z8" [@fadeInOut]>
     <mat-card-content>
-      <h1>LOGIN</h1>
+      <h1>HOLA !</h1>
+      <p class="login-text">Inicia sessió per <br>crear un esdeveniment</p>
       <form (ngSubmit)="login()" [formGroup]="loginForm" class="form-group">
 
-        <mat-form-field>
+        <mat-form-field class="w-80">
           <input type="email" matInput placeholder="Email" required [formControl]="email">
         </mat-form-field>
         <div *ngIf="email.errors">
@@ -12,29 +13,29 @@
             style="color: red"
             *ngIf="email.errors && (email.touched || email.dirty)"
           >
-            <span *ngIf="email.errors['required']">Email is required</span>
-            <span *ngIf="email.errors['pattern']">Email not a valid format</span>
+            <span *ngIf="email.errors['required']">Email requerit</span>
+            <span *ngIf="email.errors['pattern']">Format d'email no vàlid</span>
           </span>
         </div>
         <br>
-        <mat-form-field>
-          <input type="password" matInput placeholder="Password" required [formControl]="password">
+        <mat-form-field class="w-80">
+          <input type="password" matInput placeholder="Contrasenya" required [formControl]="password">
         </mat-form-field>
         <div *ngIf="password.errors">
           <span
             style="color: red"
             *ngIf="password.errors && (password.touched || password.dirty)"
           >
-            <span *ngIf="password.errors['required']">Password is required</span>
+            <span *ngIf="password.errors['required']">contrasenya requerida</span>
             <span *ngIf="password.errors['minlength']"
-              >Password must be greater than 8 characters</span
+              >La contrasenya ha de tenir almenys 6 caràcters</span
             >
           </span>
         </div>
         <br>
         <span style="color: red">{{error}}</span>
 
-        <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid" >Login</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid" >Iniciar sessió</button>
       </form>
     </mat-card-content>
   </mat-card>

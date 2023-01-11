@@ -1,34 +1,71 @@
 <div class="container">
-    <mat-card>
+    <mat-card class="card mat-elevation-z8">
       <mat-card-content>
-        <h1>CREAR</h1>
+        <h1>CREAR ESDEVENIMENT</h1>
+        <p>Aquí pots crear un nou esdeveniment, afegeix un títol, el lloc, la data i l'hora d'inici, la data i l'hora de fi i la URL</p>
         <form (ngSubmit)="createMeeting()" [formGroup]="meetingForm" class="form-group">
-
-            <mat-form-field >
-                <input type="title" matInput placeholder="Title" required [formControl]="title">
-            </mat-form-field>
-
-            <br>
-            <mat-form-field>
-                <input type="text" matInput placeholder="Place" required [formControl]="place">
-             </mat-form-field>
-
-            <br>
-            <mat-form-field>
-                <input type="date" matInput placeholder="Start Date" required [formControl]="start_date">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <input type="date" matInput placeholder="End Date" required [formControl]="end_date">
-            </mat-form-field>
-
-            <br>
-            <mat-form-field>
-                <input type="text" matInput placeholder="Slug" required [formControl]="slug">
-            </mat-form-field>
-
-            <br>
-            <button type="submit" mat-raised-button color="primary" [disabled]="!meetingForm.valid">Crear</button>
+          <mat-form-field  class="w-100">
+              <input type="title" matInput placeholder="Títol" required [formControl]="title">
+          </mat-form-field>
+          <div *ngIf="title.errors">
+            <span
+              style="color: red"
+              *ngIf="title.errors && (title.touched || title.dirty)"
+            >
+              <span *ngIf="title.errors['required']">El nom és requerit</span>
+            </span>
+          </div>
+          <br>
+          <mat-form-field class="w-100">
+              <input type="text" matInput placeholder="Lloc" required [formControl]="place">
+          </mat-form-field>
+          <div *ngIf="place.errors">
+            <span
+              style="color: red"
+              *ngIf="place.errors && (place.touched || place.dirty)"
+            >
+              <span *ngIf="place.errors['required']">El lloc és requerit</span>
+            </span>
+          </div>
+          <br>
+          <mat-form-field class="w-100">
+              <input type="datetime-local" matInput placeholder="Data inici" required [formControl]="start_date" min="2023-01-05">
+          </mat-form-field>
+          <div *ngIf="start_date.errors">
+            <span
+              style="color: red"
+              *ngIf="start_date.errors && (start_date.touched || start_date.dirty)"
+            >
+              <span *ngIf="start_date.errors['required']">La data d'inici és requerida</span>
+            </span>
+          </div>
+          <br>
+          <mat-form-field class="w-100">
+              <input type="datetime-local" matInput placeholder="Data fi" required [formControl]="end_date" >
+          </mat-form-field>
+          <div *ngIf="end_date.errors">
+            <span
+              style="color: red"
+              *ngIf="end_date.errors && (end_date.touched || end_date.dirty)"
+            >
+              <span *ngIf="end_date.errors['required']">La data de fi és requerida</span>
+            </span>
+          </div>
+          <br>
+          <mat-form-field class="w-100">
+              <input type="text" matInput placeholder="Url" required [formControl]="slug">
+          </mat-form-field>
+          <div *ngIf="slug.errors">
+            <span
+              style="color: red"
+              *ngIf="slug.errors && (slug.touched || slug.dirty)"
+            >
+              <span *ngIf="slug.errors['required']">La URL és requerida</span>
+            </span>
+          </div>
+          <br>
+          <button type="submit" mat-raised-button color="primary" [disabled]="!meetingForm.valid">Crear</button>
+          <button class="ml-20" mat-raised-button color="accent" onclick="reset()">Reset</button>
         </form>
       </mat-card-content>
     </mat-card>

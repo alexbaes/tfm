@@ -1,4 +1,4 @@
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -14,6 +14,7 @@ import { MeetingService } from '@app/Services/meeting.service';
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
+  providers: [DatePipe],
 })
 export class CreateComponent implements OnInit {
   message: string = '';
@@ -25,24 +26,24 @@ export class CreateComponent implements OnInit {
   start_date: FormControl;
   end_date: FormControl;
   slug: FormControl;
-
   meetingForm: FormGroup;
 
   constructor(
     private meetService: MeetingService,
     public router: Router,
     private fb: FormBuilder
-  ) {
+  ) // private datePipe: DatePipe
+  {
     this.meeting = new MeetingDTO('', '', new Date(), new Date(), '');
 
     this.title = new FormControl(this.meeting.title, [Validators.required]);
     this.place = new FormControl(this.meeting.place, [Validators.required]);
     this.start_date = new FormControl(
-      formatDate(this.meeting.start_date, 'yyyy-MM-dd', 'en'),
+      formatDate(this.meeting.start_date, 'dd-MM-yyyy h:mm', 'en'),
       [Validators.required]
     );
     this.end_date = new FormControl(
-      formatDate(this.meeting.end_date, 'yyyy-MM-dd', 'en'),
+      formatDate(this.meeting.end_date, 'dd-MM-yyyy h:mm', 'en'),
       [Validators.required]
     );
     this.slug = new FormControl(this.meeting.slug, [Validators.required]);
@@ -60,6 +61,7 @@ export class CreateComponent implements OnInit {
 
   createMeeting() {
     const meeting = this.meetingForm.value;
+
     this.meetService.createMeeting(meeting).subscribe({
       next: (data) => {
         console.log(data);

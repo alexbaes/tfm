@@ -1,44 +1,42 @@
 <div class="container">
-  <mat-card>
-      <mat-card-content>
-          <div style="display: flex;">
+  <mat-card class="card mat-elevation-z8">
+      <mat-card-content *ngIf="meeting" class="content-card">
+        <div class="event-info mr-70">
+          <h1>Info de l'esdeveniment</h1>
+          <p>Títol: <span><strong>{{meeting.title}}</strong></span></p>
+          <p>Lloc: <span><strong>{{meeting.place}}</strong></span></p>
+          <p>Dia inici: <span><strong>{{meeting.start_date | date: 'dd/MM/yyyy'}}</strong></span></p>
+          <p>Hora inici: <span><strong>{{meeting.start_date | date: 'h:mm'}}</strong></span></p>
+          <p>Dia fi: <span><strong>{{meeting.end_date | date: 'dd/MM/yyyy'}}</strong></span></p>
+          <p>Hora fi: <span><strong>{{meeting.end_date | date: 'h:mm'}}</strong></span></p>
+          <small>*Format de l'hora en 24 hores</small>
+        </div>
+        <div class="event-form mt-40">
+          <h2>Formulari d'assistència </h2>
+          <form (ngSubmit)="registerAttendee()" [formGroup]="attendeeForm"  class="form-group">
+            <mat-form-field class="w-80" >
+              <input type="name" matInput placeholder="Nom" required [formControl]="name">
+            </mat-form-field>
+            <div *ngIf="name.errors">
+              <span
+                style="color: red"
+                *ngIf="name.errors && (name.touched || name.dirty)">
+                <span *ngIf="name.errors['required']">El nom és requerit</span>
+                <span *ngIf="name.errors['minlength']">El nom ha de tenir al menys tres caràcters</span>
+                <span *ngIf="name.errors['maxlength']">El nom pot tenir màxim 55 caràcters</span>
+              </span>
+            </div>
 
-              <div style="width: 30%">
-                <h1>Detall de l'esdeveniment</h1>
-                  <p>Títol: <span>{{meeting.title}}</span></p>
-                  <p>Lloc: <span>{{meeting.place}}</span></p>
-                  <p>Dia inici: <span>{{meeting.start_date}}</span></p>
-                  <p>Dia fi: <span>{{meeting.end_date}}</span></p>
-              </div>
-              <div>
-                <h2>Formulari de registre</h2>
-                <form (ngSubmit)="registerAttendee()" [formGroup]="attendeeForm"  class="form-group">
-                  <mat-form-field >
-                    <input type="name" matInput placeholder="Name" required [formControl]="name">
-                  </mat-form-field>
-                  <div *ngIf="name.errors">
-                    <span
-                      style="color: red"
-                      *ngIf="name.errors && (name.touched || name.dirty)">
-                      <span *ngIf="name.errors['required']">El nom és requerit</span>
-                      <span *ngIf="name.errors['minlength']">El nom ha de tenir al menys tres caràcters</span>
-                      <span *ngIf="name.errors['maxlength']">El nom pot tenir màxim 55 caràcters</span>
-                    </span>
-                  </div>
-
-                  <p>Assistiràs?</p>
-                  <mat-radio-group [formControl]="attendee">
-                    <mat-radio-button [value]="true" >Sí</mat-radio-button>
-                    <mat-radio-button [value]="false">No</mat-radio-button>
-                  </mat-radio-group>
-                 <br>
-
-                  <br>
-                  <button type="submit" mat-raised-button color="primary" [disabled]="!attendeeForm.valid">Enviar</button>
-              </form>
-              </div>
-          </div>
-
+            <p class="mt-10">Assistiràs?</p>
+            <mat-radio-group [formControl]="attendee">
+              <mat-radio-button [value]=1 >Sí</mat-radio-button>
+              <mat-radio-button [value]=0 class="ml-20">No</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <button class="mt-40" type="submit" mat-raised-button color="primary" [disabled]="!attendeeForm.valid">Enviar</button>
+        </form>
+        <p class="message mt-10">{{message}}</p>
+        </div>
       </mat-card-content>
   </mat-card>
 </div>

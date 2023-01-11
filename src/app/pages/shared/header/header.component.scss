@@ -1,4 +1,32 @@
-.logo{
-  width: 100px;
-  max-width: 120px;
+.header {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 50px;
+  justify-content: center;
 }
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  width: 100%;
+}
+
+.menu { display: none; }
+
+.logo img { max-width: 30%; }
+
+.menu-icon { margin-right: 5px; }
+
+@media (min-width: 768px) {
+  .mobile-menu { display: none; }
+
+  .menu { display: block;}
+}
+
+@media (min-width: 1024px) {
+  .header{ margin-bottom: 0; }
+}
+
+
